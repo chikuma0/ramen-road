@@ -1,0 +1,56 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    './pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './components/**/*.{js,ts,jsx,tsx,mdx}',
+    './app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
+  theme: {
+    extend: {
+      colors: {
+        ramen: {
+          primary: 'var(--ramen-primary)',
+          'primary-light': 'var(--ramen-primary-light)',
+          'primary-dark': 'var(--ramen-primary-dark)',
+          secondary: 'var(--ramen-secondary)',
+          'secondary-light': 'var(--ramen-secondary-light)',
+          'secondary-dark': 'var(--ramen-secondary-dark)',
+          accent1: 'var(--ramen-accent-1)',
+          accent2: 'var(--ramen-accent-2)',
+          accent3: 'var(--ramen-accent-3)',
+          white: 'var(--ramen-white)',
+          'light-gray': 'var(--ramen-light-gray)',
+          gray: 'var(--ramen-gray)',
+          'dark-gray': 'var(--ramen-dark-gray)',
+          black: 'var(--ramen-black)',
+        },
+      },
+      fontFamily: {
+        heading: 'var(--font-heading)',
+        body: 'var(--font-body)',
+        accent: 'var(--font-accent)',
+      },
+      spacing: {
+        '0': 'var(--space-0)',
+        '1': 'var(--space-1)',
+        '2': 'var(--space-2)',
+        '3': 'var(--space-3)',
+        '4': 'var(--space-4)',
+        '5': 'var(--space-5)',
+        '6': 'var(--space-6)',
+        '8': 'var(--space-8)',
+        '10': 'var(--space-10)',
+        '12': 'var(--space-12)',
+        '16': 'var(--space-16)',
+        '20': 'var(--space-20)',
+        '24': 'var(--space-24)',
+        '32': 'var(--space-32)',
+        '40': 'var(--space-40)',
+        '48': 'var(--space-48)',
+        '56': 'var(--space-56)',
+        '64': 'var(--space-64)',
+      },
+    },
+  },
+  plugins: [],
+}; 

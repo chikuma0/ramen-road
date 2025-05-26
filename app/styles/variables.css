@@ -1,0 +1,95 @@
+:root {
+  /* Primary Colors */
+  --ramen-primary: #FF4500;
+  --ramen-primary-light: #FF6A33;
+  --ramen-primary-dark: #CC3700;
+  
+  /* Secondary Colors */
+  --ramen-secondary: #362E21;
+  --ramen-secondary-light: #5A4D3A;
+  --ramen-secondary-dark: #221C14;
+  
+  /* Accent Colors */
+  --ramen-accent-1: #F2E2C4;
+  --ramen-accent-2: #7D9E82;
+  --ramen-accent-3: #D4A762;
+  
+  /* Neutral Colors */
+  --ramen-white: #FAFAFA;
+  --ramen-light-gray: #F2F2F2;
+  --ramen-gray: #E0E0E0;
+  --ramen-dark-gray: #757575;
+  --ramen-black: #212121;
+  
+  /* Utility Colors */
+  --ramen-success: #43A047;
+  --ramen-error: #E53935;
+  --ramen-warning: #FFB300;
+  --ramen-info: #1E88E5;
+  
+  /* Premium Colors */
+  --ramen-premium: #FFCA28;
+  --ramen-premium-glow: #FFE082;
+  
+  /* Typography */
+  --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-accent: 'Noto Sans JP', sans-serif;
+  
+  /* Font Sizes */
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+  --text-3xl: 1.875rem;
+  --text-4xl: 2.25rem;
+  --text-5xl: 3rem;
+  
+  /* Line Heights */
+  --leading-none: 1;
+  --leading-tight: 1.25;
+  --leading-snug: 1.375;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+  --leading-loose: 2;
+  
+  /* Font Weights */
+  --font-thin: 100;
+  --font-extralight: 200;
+  --font-light: 300;
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+  --font-extrabold: 800;
+  --font-black: 900;
+  
+  /* Spacing */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-32: 8rem;
+  --space-40: 10rem;
+  --space-48: 12rem;
+  --space-56: 14rem;
+  --space-64: 16rem;
+  
+  /* Breakpoints */
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+} 

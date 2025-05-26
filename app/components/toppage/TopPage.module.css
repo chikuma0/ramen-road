@@ -1,0 +1,135 @@
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: var(--space-4);
+}
+
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-16) var(--space-4);
+  background-color: var(--ramen-light-gray);
+  border-radius: 8px;
+  margin-bottom: var(--space-16);
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl);
+  font-weight: var(--font-bold);
+  color: var(--ramen-secondary);
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.description {
+  font-family: var(--font-body);
+  font-size: var(--text-xl);
+  color: var(--ramen-secondary);
+  max-width: 600px;
+  margin-bottom: var(--space-8);
+  line-height: var(--leading-relaxed);
+}
+
+.buttonGroup {
+  display: flex;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.sectionTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-3xl);
+  font-weight: var(--font-bold);
+  color: var(--ramen-secondary);
+  text-align: center;
+  margin-bottom: var(--space-8);
+}
+
+.treeSection {
+  margin-bottom: var(--space-16);
+}
+
+.treeContainer {
+  width: 100%;
+  height: 600px;
+  background-color: var(--ramen-white);
+  border-radius: 8px;
+  border: 1px solid var(--ramen-gray);
+  overflow: hidden;
+}
+
+.journeyTypesSection {
+  margin-bottom: var(--space-16);
+}
+
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--space-6);
+  margin: var(--space-10) 0;
+}
+
+.featuredSection {
+  background-color: var(--ramen-secondary);
+  color: white;
+  border-radius: 8px;
+  padding: var(--space-16);
+  margin-bottom: var(--space-16);
+}
+
+.featuredContent {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.featuredTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--font-bold);
+  margin-bottom: var(--space-4);
+}
+
+.featuredDescription {
+  font-family: var(--font-body);
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  margin-bottom: var(--space-8);
+  opacity: 0.9;
+}
+
+.resourcesSection {
+  margin-bottom: var(--space-16);
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: var(--text-4xl);
+  }
+
+  .description {
+    font-size: var(--text-lg);
+  }
+
+  .buttonGroup {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .buttonGroup button {
+    width: 100%;
+  }
+
+  .featuredTitle {
+    font-size: var(--text-3xl);
+  }
+
+  .featuredDescription {
+    font-size: var(--text-base);
+  }
+} 

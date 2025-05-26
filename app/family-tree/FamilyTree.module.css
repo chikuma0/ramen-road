@@ -1,0 +1,922 @@
+/* Main container */
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #0a1122;
+  background-image: radial-gradient(circle at 50% 50%, rgba(29, 78, 216, 0.15), transparent 800px);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Header */
+.header {
+  padding: 1.5rem 2rem;
+  position: relative;
+  z-index: 10;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ff4500;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 15px rgba(255, 69, 0, 0.3);
+}
+
+.navigation {
+  margin-bottom: 1.5rem;
+}
+
+.backLink {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 1rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.backLink:hover {
+  color: #ff4500;
+}
+
+.description {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.description p {
+  margin: 0;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* Search */
+.searchBar {
+  max-width: 600px;
+  margin: 0 auto 1.5rem;
+  position: relative;
+  border-radius: 9999px;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+}
+
+.searchBar:focus-within {
+  box-shadow: 0 0 0 2px rgba(255, 69, 0, 0.3);
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.searchButton {
+  background: none;
+  border: none;
+  color: #ffffff;
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.searchButton svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.searchInput {
+  flex: 1;
+  background: none;
+  border: none;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0.75rem 1rem 0.75rem 0;
+  width: 100%;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Filter and view controls */
+.controls {
+  max-width: 1200px;
+  margin: 0 auto 1rem;
+}
+
+.filterButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.filterButton {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 9999px;
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.8);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.filterButton:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.filterButtonActive {
+  background-color: rgba(255, 69, 0, 0.3);
+  border-color: rgba(255, 69, 0, 0.5);
+  color: #ffffff;
+}
+
+.viewControls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.viewButton {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.viewButton:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.viewButtonActive {
+  background-color: rgba(255, 69, 0, 0.3);
+  border-color: rgba(255, 69, 0, 0.5);
+}
+
+.viewIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.minimapToggle {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+}
+
+/* Content area */
+.content {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Canvas for the graph */
+.canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  cursor: grab;
+}
+
+.canvasActive {
+  cursor: grabbing;
+}
+
+.treeGraph {
+  position: absolute;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+/* Shop nodes */
+.shopNode {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border-radius: 1rem;
+  overflow: hidden;
+  background-color: rgba(12, 20, 44, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  transform-origin: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.shopNode:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 25px rgba(255, 69, 0, 0.3);
+  z-index: 10;
+}
+
+.originNode {
+  border: 2px solid #ff4500;
+  box-shadow: 0 0 25px rgba(255, 69, 0, 0.5);
+}
+
+.shopNodeImage {
+  width: 100%;
+  height: 60px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.shopNodeImage::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20px;
+  background: linear-gradient(to top, rgba(12, 20, 44, 1), transparent);
+}
+
+.shopNodeContent {
+  flex: 1;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.shopNodeTitle {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+  text-align: center;
+}
+
+.shopNodeYear {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  text-align: center;
+}
+
+/* SVG connections */
+.connections {
+  pointer-events: none;
+}
+
+/* Tooltip */
+.tooltip {
+  position: absolute;
+  transform: translate(-50%, -100%);
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: #ffffff;
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 20;
+}
+
+.tooltipArrow {
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid rgba(0, 0, 0, 0.8);
+}
+
+/* Controls for the graph */
+.treeControls {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.controlButton {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  background-color: rgba(12, 20, 44, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.controlButton:hover {
+  background-color: rgba(255, 69, 0, 0.2);
+}
+
+.controlButton svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Minimap */
+.minimap {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  width: 160px;
+  height: 100px;
+  background-color: rgba(12, 20, 44, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.minimapContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.minimapSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.viewportRect {
+  fill: none;
+  stroke: rgba(255, 69, 0, 0.7);
+  stroke-width: 2;
+}
+
+.minimapButtons {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.minimapButton {
+  width: 1.25rem;
+  height: 1.25rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 2px;
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  cursor: pointer;
+}
+
+.minimapButton svg {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+/* Background particles */
+.particle {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: float var(--duration) ease-in-out var(--delay) infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(var(--end-x), var(--end-y));
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Timeline view */
+.timelineView {
+  flex: 1;
+  padding: 1rem 2rem 4rem;
+  overflow-y: auto;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.timelineHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.timelineTitle {
+  font-size: 1.75rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.sortButton {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.sortButton:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.sortIcon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.timelineContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.decadeSection {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+
+.activeDecade {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.decadeHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.decadeTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.decadeInfo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.shopCount {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.decadeToggleIcon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease-in-out;
+}
+
+.decadeToggleIconActive {
+  transform: rotate(180deg);
+}
+
+.timelineShopGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
+}
+
+.timelineShopCard {
+  background-color: rgba(12, 20, 44, 0.9);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.timelineShopCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+  border-color: rgba(255, 69, 0, 0.3);
+}
+
+.timelineShopImage {
+  height: 150px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.timelineShopYear {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(0, 0, 0, 0.7);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.timelineShopContent {
+  padding: 1.25rem;
+}
+
+.timelineShopName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.timelineShopRomanized {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  margin: 0 0 1rem;
+}
+
+.timelineShopDescription {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 1.25rem;
+}
+
+.timelineShopFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timelineShopGroup {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.viewDetailsButton {
+  background: none;
+  border: none;
+  color: #ff4500;
+  font-size: 0.875rem;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  backdrop-filter: blur(5px);
+  padding: 2rem;
+}
+
+.modalContent {
+  background-color: #0c142c;
+  border-radius: 1rem;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+}
+
+.modalClose {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  border: none;
+  border-radius: 9999px;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.2s ease-in-out;
+}
+
+.modalClose:hover {
+  background-color: rgba(255, 69, 0, 0.5);
+}
+
+.modalClose svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.modalImageContainer {
+  width: 100%;
+  height: 300px;
+  position: relative;
+}
+
+.modalImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modalImageOverlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem 1.5rem 1.5rem;
+  background: linear-gradient(to top, rgba(12, 20, 44, 1), transparent);
+}
+
+.modalTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.modalSubtitle {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0.25rem 0 0;
+}
+
+.modalBody {
+  padding: 1.5rem;
+  overflow-y: auto;
+}
+
+.modalInfoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.modalInfoItem {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  padding: 1rem;
+}
+
+.modalInfoTitle {
+  font-size: 0.875rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0 0 0.5rem;
+}
+
+.modalInfoValue {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.modalSection {
+  margin-bottom: 2rem;
+}
+
+.modalSectionTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0 0 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modalDescription {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0;
+}
+
+.specialtiesList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.specialtyTag {
+  background-color: rgba(255, 69, 0, 0.2);
+  border: 1px solid rgba(255, 69, 0, 0.3);
+  border-radius: 9999px;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.connectionsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 1rem;
+}
+
+.connectionCard {
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.connectionCard:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.connectionImage {
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+}
+
+.connectionInfo {
+  padding: 0.75rem;
+}
+
+.connectionName {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0 0 0.25rem;
+}
+
+.connectionYear {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Loading screen */
+.loadingContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #0a1122;
+}
+
+.loadingSpinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(255, 69, 0, 0.3);
+  border-radius: 50%;
+  border-top-color: #ff4500;
+  margin-bottom: 1rem;
+}
+
+.loadingText {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Footer */
+.footer {
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footerTitle {
+  font-size: 1.5rem;
+  color: #ff4500;
+  margin-bottom: 1rem;
+}
+
+.footerText {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.footerText:last-child {
+  margin-bottom: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+  }
+  
+  .title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .filterButtons {
+    gap: 0.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .filterButton {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+  }
+  
+  .viewControls {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .timelineView {
+    padding: 1rem;
+  }
+  
+  .timelineShopGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .modalContent {
+    max-height: 100vh;
+    border-radius: 0;
+  }
+  
+  .modalImageContainer {
+    height: 200px;
+  }
+  
+  .modalTitle {
+    font-size: 1.5rem;
+  }
+  
+  .modalSubtitle {
+    font-size: 1rem;
+  }
+  
+  .modalInfoGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .connectionsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}

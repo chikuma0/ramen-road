@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>横浜家系ラーメンの系譜 完全ガイド</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f9f7f2;
+            color: #333;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .header {
+            background-color: #8B0000;
+            color: white;
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/flags/4x3/jp.svg');
+            background-repeat: no-repeat;
+            background-position: right 20px center;
+            background-size: 80px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        .section {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3, h4 {
+            font-weight: 700;
+        }
+        h2 {
+            border-bottom: 3px solid #8B0000;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        h3 {
+            border-left: 4px solid #8B0000;
+            padding-left: 0.5rem;
+            margin: 1.5rem 0 1rem 0;
+        }
+        .family-tree {
+            width: 100%;
+            overflow-x: auto;
+            padding: 2rem 0;
+        }
+        .tree-node {
+            fill: #fff;
+            stroke: #8B0000;
+            stroke-width: 2;
+        }
+        .tree-label {
+            font-size: 12px;
+            font-weight: 500;
+            text-anchor: middle;
+        }
+        .tree-link {
+            stroke: #8B0000;
+            stroke-width: 1.5;
+        }
+        .shop-card {
+            border-left: 4px solid #8B0000;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+        .feature-icon {
+            color: #8B0000;
+            margin-right: 0.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+        }
+        table th {
+            background-color: #f0f0f0;
+        }
+        .system-type {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+            margin-bottom: 0.25rem;
+        }
+        .type-direct {
+            background-color: #ffcccc;
+            color: #8B0000;
+        }
+        .type-classic {
+            background-color: #ffffcc;
+            color: #8B4513;
+        }
+        .type-ichiroku {
+            background-color: #ccffcc;
+            color: #006400;
+        }
+        .type-musashi {
+            background-color: #ccccff;
+            color: #00008B;
+        }
+        .definition-box {
+            background-color: #f5f5f5;
+            border-left: 4px solid #8B0000;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+        .quote {
+            font-style: italic;
+            color: #666;
+            border-left: 3px solid #ccc;
+            padding-left: 1rem;
+            margin: 1rem 0;
+        }
+        .scroll-container {
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 1rem;
+            margin: 1rem 0;
+        }
+        @media (max-width: 768px) {
+            .scroll-container {
+                max-height: 400px;
+            }
+        }
+        .summary-point {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        .summary-icon {
+            color: #8B0000;
+            margin-right: 0.5rem;
+            margin-top: 0.25rem;
+        }
+        .comparison-table td, .comparison-table th {
+            text-align: center;
+        }
+        .comparison-table th:first-child,
+        .comparison-table td:first-child {
+            text-align: left;
+        }
+        .family-tree-container {
+            width: 100%;
+            padding: 2rem 0;
+            display: flex;
+            justify-content: center;
+        }
+        .history-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+        .timeline-item {
+            position: relative;
+            padding-bottom: 1.5rem;
+        }
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 0.25rem;
+            width: 1rem;
+            height: 1rem;
+            background-color: #8B0000;
+            border-radius: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: -1.5rem;
+            top: 0.75rem;
+            width: 2px;
+            height: 100%;
+            background-color: #8B0000;
+        }
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        .footer {
+            margin-top: 2rem;
+            padding: 1rem 0;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content container mx-auto px-4">
+            <h1 class="text-4xl md:text-5xl font-bold mb-2">横浜家系ラーメンの系譜</h1>
+            <p class="text-xl md:text-2xl">起源から現在まで - 完全ガイド</p>
+        </div>
+    </div>
+
+    <div class="container mx-auto px-4 py-8">
+        <!-- イントロダクション -->
+        <section class="section">
+            <h2 class="text-2xl">家系ラーメンとは</h2>
+            <div class="definition-box">
+                <p>家系ラーメン（いえけいラーメン）は、1974年以降に登場した神奈川県横浜市発祥の豚骨醤油ベースで太いストレート麺を特徴とするラーメンのジャンル。ラーメン店「吉村家」を源流とする。</p>
+                <p class="mt-2">基本的な特徴：</p>
+                <ul class="list-disc pl-6 mt-1">
+                    <li>豚骨と鶏ガラから取った出汁に醤油のタレを混ぜた豚骨醤油ベースのスープ</li>
+                    <li>太めの中華麺と鶏油</li>
+                    <li>ホウレンソウ、チャーシュー、海苔のトッピング</li>
+                </ul>
+            </div>
+            
+            <div class="mt-6">
+                <h3 class="text-xl">家系ラーメンの特徴</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h4 class="font-bold text-lg text-red-800 mb-2">スープ</h4>
+                        <p>豚骨や鶏ガラをベースに、醤油タレを合わせた濃厚なスープが特徴。スープの上には鶏油（チーユ）が浮かんでいる。</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h4 class="font-bold text-lg text-red-800 mb-2">麺</h4>
+                        <p>太めのストレート麺で、茹で時間が短めのため、やや固めの食感。家系ラーメンの麺の長さは一般的なラーメンより短め。</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h4 class="font-bold text-lg text-red-800 mb-2">トッピング</h4>
+                        <p>ホウレン草、チャーシュー、海苔が基本。海苔は3枚が標準的。「家系三種の神器」と呼ばれる。</p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded">
+                        <h4 class="font-bold text-lg text-red-800 mb-2">調整システム</h4>
+                        <p>「濃さ・油の量・麺の硬さ」を指定できる独自のカスタマイズシステムが特徴。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 家系ラーメンの歴史 -->
+        <section class="section">
+            <h2 class="text-2xl">家系ラーメンの歴史</h2>
+            <div class="history-timeline mt-4">
+                <div class="timeline-item">
+                    <h4 class="font-bold">1974年</h4>
+                    <p>横浜市において吉村実氏が「吉村家」を開業。家系ラーメンの源流となる。</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="font-bold">1980年代</h4>
+                    <p>「本牧家」が吉村家の2号店として開業。後に吉村家から独立。</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="font-bold">1986年</h4>
+                    <p>「六角家」が創業。後に家系御三家の一つとして知られるようになる。</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="font-bold">1990年代</h4>
+                    <p>家系ラーメンの第一次ブーム。多くの暖簾分け店が横浜を中心に誕生。</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="font-bold">2000年代初頭</h4>
+                    <p>第二次家系ブーム。六角家を中心にクラシック系の店舗が増加。</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="font-bold">2000年代後半</h4>
+                    <p>「壱六家」系列や「武蔵家」などの東京発の家系チェーンが全国展開を加速。第三次家系ブーム。</p>
+                </div>
+                <div class="timeline-item">
+                    <h4 class="font-bold">2010年代～現在</h4>
+                    <p>家系ラーメンが全国的に普及。資本系の店舗が急増し、海外にも進出。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 四大系譜の説明 -->
+        <section class="section">
+            <h2 class="text-2xl">家系ラーメン 四大系譜</h2>
+            <p class="mb-4">家系ラーメンには大きく分けて4つの系譜があります。それぞれ特徴や味わいが異なり、独自の文化を形成しています。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+                <!-- 直系 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="bg-red-800 text-white p-3">
+                        <h3 class="text-xl font-bold border-0 m-0 p-0">直系</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="mb-2">吉村家から直接派生した店舗。家系ラーメンの原点であり頂点。</p>
+                        <div class="mt-3">
+                            <h4 class="font-bold text-red-800">特徴：</h4>
+                            <ul class="list-disc pl-6 mt-1">
+                                <li>漆黒の器に注がれる醤油先行型スープ</li>
+                                <li>職人は純白の戦闘服を着用</li>
+                                <li>スモークされたチャーシューと味玉</li>
+                                <li>行者にんにくとニンニクチップの2種類のニンニク</li>
+                                <li>酒井製麺の麺を使用</li>
+                            </ul>
+                        </div>
+                        <div class="mt-3">
+                            <h4 class="font-bold text-red-800">代表店：</h4>
+                            <p>吉村家、杉田家、厚木家、はじめ家、末廣家、環2家 など</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- クラシック系 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="bg-yellow-800 text-white p-3">
+                        <h3 class="text-xl font-bold border-0 m-0 p-0">クラシック系</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="mb-2">六角家などを中心とした伝統的な味を守る系譜。バランス型の味わい。</p>
+                        <div class="mt-3">
+                            <h4 class="font-bold text-yellow-800">特徴：</h4>
+                            <ul class="list-disc pl-6 mt-1">
+                                <li>青磁の器に注がれた黄金のスープ</li>
+                                <li>豚骨・醤油・鶏油のバランスが絶妙</li>
+                                <li>黄身まで染み渡る伝統的な味玉</li>
+                                <li>各店舗ごとに独自のカラーリング（黄・赤黒・紅白・緑など）</li>
+                                <li>酒井製麺の麺を使用</li>
+                            </ul>
+                        </div>
+                        <div class="mt-3">
+                            <h4 class="font-bold text-yellow-800">代表店：</h4>
+                            <p>本牧家、六角家、寿々喜家、たかさご家 など</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 壱系 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="bg-green-800 text-white p-3">
+                        <h3 class="text-xl font-bold border-0 m-0 p-0">壱系</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="mb-2">壱六家を起点とし、全国に広がる資本系。家系ラーメンの普及に貢献。</p>
+                        <div class="mt-3">
+                            <h4 class="font-bold text-green-800">特徴：</h4>
+                            <ul class="list-disc pl-6 mt-1">
+                                <li>白濁のクリーミーなスープ</li>
+                                <li>赤い看板に太い筆文字のロゴ</li>
+                                <li>うずらの卵が特徴的なトッピング</li>
+                                <li>終日ライス無料や玉ねぎ食べ放題などのサービス</li>
+                                <li>セントラルキッチン方式で全国展開</li>
+                            </ul>
+                        </div>
+                        <div class="mt-3">
+                            <h4 class="font-bold text-green-800">代表店：</h4>
+                            <p>壱六家、魂心家、町田商店、壱角家 など</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 新中野武蔵家系 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="bg-blue-800 text-white p-3">
+                        <h3 class="text-xl font-bold border-0 m-0 p-0">新中野武蔵家系</h3>
+                    </div>
+                    <div class="p-4">
+                        <p class="mb-2">東京での家系ブームを牽引した「武蔵家」を中心とする系譜。</p>
+                        <div class="mt-3">
+                            <h4 class="font-bold text-blue-800">特徴：</h4>
+                            <ul class="list-disc pl-6 mt-1">
+                                <li>青磁の器に茶色いスープ（豚骨の旨味が強い）</li>
+                                <li>赤ベース白文字の看板に「武」の字が入ることが多い</li>
+                                <li>固めの麺（バリカタ対応可能）と固めのライス</li>
+                                <li>ラーメンを注文するとライス食べ放題</li>
+                                <li>チーズやチーズフランスパンなど独自のトッピング</li>
+                            </ul>
+                        </div>
+                        <div class="mt-3">
+                            <h4 class="font-bold text-blue-800">代表店：</h4>
+                            <p>武蔵家（新中野本店）、渡来武、麺家たいせい、北里家 など</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 家系ラーメン家系図（視覚的表現） -->
+        <section class="section">
+            <h2 class="text-2xl">横浜家系ラーメン 家系図（視覚的表現）</h2>
+            <div class="family-tree-container">
+                <svg width="1000" height="1000" viewBox="0 0 1000 1000">
+                    <!-- 背景グリッド -->
+                    <defs>
+                        <pattern id="smallGrid" width="10" height="10" patternUnits="userSpaceOnUse">
+                            <path d="M 10 0 L 0 0 0 10" fill="none" stroke="#f0f0f0" stroke-width="0.5"/>
+                        </pattern>
+                        <pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse">
+                            <rect width="100" height="100" fill="url(#smallGrid)"/>
+                            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#e0e0e0" stroke-width="1"/>
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#grid)" />
+
+                    <!-- 吉村家（ルート） -->
+                    <g transform="translate(500, 50)">
+                        <rect x="-75" y="-30" width="150" height="60" rx="10" class="tree-node" fill="#8B0000" />
+                        <text x="0" y="5" class="tree-label" fill="white" font-weight="bold">吉村家（1974年）</text>
+                        <text x="0" y="25" class="tree-label" fill="white">家系ラーメン総本山</text>
+                    </g>
+
+                    <!-- 本流から分かれる3つの主要な枝 -->
+                    <line x1="500" y1="80" x2="500" y2="130" class="tree-link" />
+                    <line x1="500" y1="130" x2="200" y2="130" class="tree-link" />
+                    <line x1="500" y1="130" x2="800" y2="130" class="tree-link" />
+                    <line x1="200" y1="130" x2="200" y2="180" class="tree-link" />
+                    <line x1="500" y1="130" x2="500" y2="180" class="tree-link" />
+                    <line x1="800" y1="130" x2="800" y2="180" class="tree-link" />
+
+                    <!-- 直系エリア -->
+                    <g transform="translate(200, 180)">
+                        <rect x="-80" y="-30" width="160" height="60" rx="10" class="tree-node" fill="#ffcccc" stroke="#8B0000" />
+                        <text x="0" y="5" class="tree-label" fill="#8B0000" font-weight="bold">直系</text>
+                        <text x="0" y="25" class="tree-label" fill="#8B0000">吉村家直系店舗</text>
+                    </g>
+
+                    <!-- 直系から枝分かれ -->
+                    <line x1="200" y1="210" x2="200" y2="250" class="tree-link" />
+                    <line x1="200" y1="250" x2="100" y2="250" class="tree-link" />
+                    <line x1="200" y1="250" x2="300" y2="250" class="tree-link" />
+                    <line x1="100" y1="250" x2="100" y2="300" class="tree-link" />
+                    <line x1="200" y1="250" x2="200" y2="300" class="tree-link" />
+                    <line x1="300" y1="250" x2="300" y2="300" class="tree-link" />
+
+                    <!-- 直系の主要店舗 -->
+                    <g transform="translate(100, 300)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B0000" />
+                        <text x="0" y="5" class="tree-label" fill="#8B0000" font-weight="bold">杉田家</text>
+                        <text x="0" y="20" class="tree-label" fill="#8B0000">直系1号店</text>
+                    </g>
+
+                    <g transform="translate(200, 300)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B0000" />
+                        <text x="0" y="5" class="tree-label" fill="#8B0000" font-weight="bold">環2家</text>
+                        <text x="0" y="20" class="tree-label" fill="#8B0000">四天王</text>
+                    </g>
+
+                    <g transform="translate(300, 300)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B0000" />
+                        <text x="0" y="5" class="tree-label" fill="#8B0000" font-weight="bold">はじめ家</text>
+                        <text x="0" y="20" class="tree-label" fill="#8B0000">四天王</text>
+                    </g>
+
+                    <!-- 直系の追加店舗 -->
+                    <line x1="100" y1="325" x2="100" y2="375" class="tree-link" />
+                    <g transform="translate(100, 375)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B0000" />
+                        <text x="0" y="5" class="tree-label" fill="#8B0000" font-weight="bold">末廣家</text>
+                    </g>
+
+                    <line x1="300" y1="325" x2="300" y2="375" class="tree-link" />
+                    <g transform="translate(300, 375)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B0000" />
+                        <text x="0" y="5" class="tree-label" fill="#8B0000" font-weight="bold">厚木家</text>
+                    </g>
+
+                    <!-- クラシック系エリア -->
+                    <g transform="translate(500, 180)">
+                        <rect x="-80" y="-30" width="160" height="60" rx="10" class="tree-node" fill="#ffffcc" stroke="#8B4513" />
+                        <text x="0" y="5" class="tree-label" fill="#8B4513" font-weight="bold">クラシック系</text>
+                        <text x="0" y="25" class="tree-label" fill="#8B4513">伝統的バランス型</text>
+                    </g>
+
+                    <!-- クラシック系から枝分かれ -->
+                    <line x1="500" y1="210" x2="500" y2="250" class="tree-link" />
+                    <line x1="500" y1="250" x2="400" y2="250" class="tree-link" />
+                    <line x1="500" y1="250" x2="500" y2="300" class="tree-link" />
+                    <line x1="500" y1="250" x2="600" y2="250" class="tree-link" />
+                    <line x1="400" y1="250" x2="400" y2="300" class="tree-link" />
+                    <line x1="600" y1="250" x2="600" y2="300" class="tree-link" />
+
+                    <!-- クラシック系の主要店舗 -->
+                    <g transform="translate(400, 300)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B4513" />
+                        <text x="0" y="5" class="tree-label" fill="#8B4513" font-weight="bold">本牧家</text>
+                        <text x="0" y="20" class="tree-label" fill="#8B4513">御三家</text>
+                    </g>
+
+                    <g transform="translate(500, 300)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B4513" />
+                        <text x="0" y="5" class="tree-label" fill="#8B4513" font-weight="bold">六角家</text>
+                        <text x="0" y="20" class="tree-label" fill="#8B4513">御三家</text>
+                    </g>
+
+                    <g transform="translate(600, 300)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B4513" />
+                        <text x="0" y="5" class="tree-label" fill="#8B4513" font-weight="bold">寿々喜家</text>
+                    </g>
+
+                    <!-- クラシック系のさらなる派生 -->
+                    <line x1="400" y1="325" x2="400" y2="375" class="tree-link" />
+                    <g transform="translate(400, 375)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B4513" />
+                        <text x="0" y="5" class="tree-label" fill="#8B4513" font-weight="bold">川崎家</text>
+                    </g>
+
+                    <line x1="500" y1="325" x2="500" y2="375" class="tree-link" />
+                    <line x1="500" y1="375" x2="450" y2="375" class="tree-link" />
+                    <line x1="500" y1="375" x2="550" y2="375" class="tree-link" />
+                    <line x1="450" y1="375" x2="450" y2="425" class="tree-link" />
+                    <line x1="550" y1="375" x2="550" y2="425" class="tree-link" />
+
+                    <g transform="translate(450, 425)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B4513" />
+                        <text x="0" y="5" class="tree-label" fill="#8B4513" font-weight="bold">九ツ家</text>
+                    </g>
+
+                    <g transform="translate(550, 425)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#8B4513" />
+                        <text x="0" y="5" class="tree-label" fill="#8B4513" font-weight="bold">たかさご家</text>
+                    </g>
+
+                    <!-- たかさご家から武蔵家への派生 -->
+                    <line x1="550" y1="450" x2="550" y2="500" class="tree-link" stroke-dasharray="5,5" />
+                    <line x1="550" y1="500" x2="650" y2="500" class="tree-link" stroke-dasharray="5,5" />
+                    <line x1="650" y1="500" x2="650" y2="600" class="tree-link" stroke-dasharray="5,5" />
+                    <text x="600" y="490" font-size="10" fill="#666">影響</text>
+
+                    <!-- 壱系エリア -->
+                    <g transform="translate(800, 180)">
+                        <rect x="-80" y="-30" width="160" height="60" rx="10" class="tree-node" fill="#ccffcc" stroke="#006400" />
+                        <text x="0" y="5" class="tree-label" fill="#006400" font-weight="bold">壱系</text>
+                        <text x="0" y="25" class="tree-label" fill="#006400">資本系チェーン</text>
+                    </g>
+
+                    <!-- 壱系から枝分かれ -->
+                    <line x1="800" y1="210" x2="800" y2="250" class="tree-link" />
+                    <line x1="800" y1="250" x2="700" y2="250" class="tree-link" />
+                    <line x1="800" y1="250" x2="800" y2="300" class="tree-link" />
+                    <line x1="800" y1="250" x2="900" y2="250" class="tree-link" />
+                    <line x1="700" y1="250" x2="700" y2="300" class="tree-link" />
+                    <line x1="900" y1="250" x2="900" y2="300" class="tree-link" />
+
+                    <!-- 壱系の主要店舗 -->
+                    <g transform="translate(700, 300)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#006400" />
+                        <text x="0" y="5" class="tree-label" fill="#006400" font-weight="bold">壱六家</text>
+                        <text x="0" y="20" class="tree-label" fill="#006400">資本系の源流</text>
+                    </g>
+
+                    <g transform="translate(800, 300)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#006400" />
+                        <text x="0" y="5" class="tree-label" fill="#006400" font-weight="bold">魂心家</text>
+                    </g>
+
+                    <g transform="translate(900, 300)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#006400" />
+                        <text x="0" y="5" class="tree-label" fill="#006400" font-weight="bold">町田商店</text>
+                    </g>
+
+                    <!-- 壱系のさらなる派生 -->
+                    <line x1="900" y1="325" x2="900" y2="375" class="tree-link" />
+                    <g transform="translate(900, 375)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#006400" />
+                        <text x="0" y="5" class="tree-label" fill="#006400" font-weight="bold">壱角家</text>
+                    </g>
+
+                    <!-- 武蔵家系エリア -->
+                    <g transform="translate(650, 600)">
+                        <rect x="-80" y="-30" width="160" height="60" rx="10" class="tree-node" fill="#ccccff" stroke="#00008B" />
+                        <text x="0" y="5" class="tree-label" fill="#00008B" font-weight="bold">新中野武蔵家系</text>
+                        <text x="0" y="25" class="tree-label" fill="#00008B">東京発家系チェーン</text>
+                    </g>
+
+                    <!-- 武蔵家系の主要店舗 -->
+                    <line x1="650" y1="630" x2="650" y2="670" class="tree-link" />
+                    <line x1="650" y1="670" x2="550" y2="670" class="tree-link" />
+                    <line x1="650" y1="670" x2="650" y2="720" class="tree-link" />
+                    <line x1="650" y1="670" x2="750" y2="670" class="tree-link" />
+                    <line x1="550" y1="670" x2="550" y2="720" class="tree-link" />
+                    <line x1="750" y1="670" x2="750" y2="720" class="tree-link" />
+
+                    <g transform="translate(550, 720)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#00008B" />
+                        <text x="0" y="5" class="tree-label" fill="#00008B" font-weight="bold">武蔵家</text>
+                        <text x="0" y="20" class="tree-label" fill="#00008B">新中野本店</text>
+                    </g>
+
+                    <g transform="translate(650, 720)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#00008B" />
+                        <text x="0" y="5" class="tree-label" fill="#00008B" font-weight="bold">渡来武</text>
+                    </g>
+
+                    <g transform="translate(750, 720)">
+                        <rect x="-50" y="-25" width="100" height="50" rx="5" class="tree-node" fill="white" stroke="#00008B" />
+                        <text x="0" y="5" class="tree-label" fill="#00008B" font-weight="bold">麺家たいせい</text>
+                    </g>
+
+                    <!-- 凡例 -->
+                    <g transform="translate(850, 600)">
+                        <rect x="-50" y="-15" width="100" height="30" rx="5" class="tree-node" fill="#ffcccc" stroke="#8B0000" />
+                        <text x="0" y="5" class="tree-label" fill="#8B0000">直系</text>
+                    </g>
+                    <g transform="translate(850, 640)">
+                        <rect x="-50" y="-15" width="100" height="30" rx="5" class="tree-node" fill="#ffffcc" stroke="#8B4513" />
+                        <text x="0" y="5" class="tree-label" fill="#8B4513">クラシック系</text>
+                    </g>
+                    <g transform="translate(850, 680)">
+                        <rect x="-50" y="-15" width="100" height="30" rx="5" class="tree-node" fill="#ccffcc" stroke="#006400" />
+                        <text x="0" y="5" class="tree-label" fill="#006400">壱系</text>
+                    </g>
+                    <g transform="translate(850, 720)">
+                        <rect x="-50" y="-15" width="100" height="30" rx="5" class="tree-node" fill="#ccccff" stroke="#00008B" />
+                        <text x="0" y="5" class="tree-label" fill="#00008B">武蔵家系</text>
+                    </g>
+
+                    <!-- 注釈 -->
+                    <text x="500" y="780" text-anchor="middle" font-size="12" fill="#666">※この家系図は主要な店舗のみを示しており、全ての店舗を網羅しているわけではありません</text>
+                    <text x="500" y="800" text-anchor="middle" font-size="12" fill="#666">※点線は直接の師弟関係ではなく、影響関係を示します</text>
+                </svg>
+            </div>
+        </section>
+
+        <!-- 家系ラーメン御三家 -->
+        <section class="section">
+            <h2 class="text-2xl">家系ラーメン御三家</h2>
+            <p class="mb-4">横浜家系ラーメンの歴史において、特に重要な位置を占める「御三家」と呼ばれる3店舗があります。これらの店舗は家系ラーメン黎明期から業界を牽引してきました。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-4">
+                <!-- 吉村家 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-utensils text-6xl text-red-800"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-red-800">吉村家</h3>
+                        <p class="text-sm text-gray-600 mb-2">創業: 1974年</p>
+                        <p class="mb-2">家系ラーメンの総本山。吉村実氏が創業し、家系ラーメンというジャンルを確立した元祖的存在。</p>
+                        <div class="mt-3">
+                            <h4 class="font-bold">特徴:</h4>
+                            <p>豚骨と鶏ガラの濃厚なスープに醤油ダレが加わった独特の味わい。家系ラーメンの標準となる基本形を確立した。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 本牧家 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-utensils text-6xl text-yellow-800"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-yellow-800">本牧家</h3>
+                        <p class="text-sm text-gray-600 mb-2">創業: 1980年代</p>
+                        <p class="mb-2">吉村家の2号店として誕生し、後に独立。クラシック系家系ラーメンの中心的存在となる。</p>
+                        <div class="mt-3">
+                            <h4 class="font-bold">特徴:</h4>
+                            <p>黄色い看板が特徴的。豚骨・醤油・鶏油のバランスが良く、マイルドな味わいが特徴。2023年に本店が閉店。</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 六角家 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="h-48 bg-gray-200 flex items-center justify-center">
+                        <i class="fas fa-utensils text-6xl text-red-700"></i>
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-red-700">六角家</h3>
+                        <p class="text-sm text-gray-600 mb-2">創業: 1986年</p>
+                        <p class="mb-2">神藤隆氏が創業。「六角橋」の地名から店名を取った。多くの暖簾分け店を輩出した。</p>
+                        <div class="mt-3">
+                            <h4 class="font-bold">特徴:</h4>
+                            <p>赤と黒の看板が特徴的。豚骨の旨味が強く、たっぷりの鶏油が載った個性的なスープ。2017年に本店が閉店。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 bg-gray-50 p-4 rounded">
+                <h3 class="text-lg font-bold mb-2">御三家から派生した主な店舗</h3>
+                <ul class="list-disc pl-6">
+                    <li><strong>本牧家系譜:</strong> 川崎家、湘南家</li>
+                    <li><strong>六角家系譜:</strong> 九ツ家、すずき家、とらきち家</li>
+                    <li><strong>両系譜の影響:</strong> 寿々喜家、たかさご家</li>
+                </ul>
+                <p class="mt-2 text-sm text-gray-600">※御三家はそれぞれ独自の味を追求しながらも、互いに影響を与え合い、家系ラーメン文化を発展させてきました。</p>
+            </div>
+        </section>
+
+        <!-- 家系ラーメン四天王 -->
+        <section class="section">
+            <h2 class="text-2xl">家系ラーメン四天王</h2>
+            <p class="mb-4">吉村家から直接修行を積んだ直系店のうち、特に有名な4店舗は「家系四天王」と呼ばれています。これらの店舗は吉村家の味を守りながらも、それぞれ独自の味を確立しました。</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                <!-- 杉田家 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-red-800">杉田家</h3>
+                        <p class="text-sm text-gray-600 mb-2">吉村家直系1号店</p>
+                        <p>吉村家で修行した津村氏が独立して開業。吉村家直系店の第1号として、本場の味を忠実に再現している。</p>
+                    </div>
+                </div>
+                
+                <!-- 環2家 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-red-800">環2家</h3>
+                        <p class="text-sm text-gray-600 mb-2">吉村家直系店</p>
+                        <p>鶴巻氏が創業。一度は独立しながらも、後に直系に復帰した異例の経歴を持つ。下永谷を中心に展開。</p>
+                    </div>
+                </div>
+                
+                <!-- はじめ家 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-red-800">はじめ家</h3>
+                        <p class="text-sm text-gray-600 mb-2">吉村家直系店</p>
+                        <p>小沢肇氏が創業。北陸地方（富山県魚津市）に家系ラーメンを広めた功績がある。</p>
+                    </div>
+                </div>
+                
+                <!-- 王道家 -->
+                <div class="border rounded-lg overflow-hidden shadow-md">
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold text-red-800">王道家</h3>
+                        <p class="text-sm text-gray-600 mb-2">元吉村家直系店</p>
+                        <p>清水裕正氏が創業。かつては四天王の一つだったが、現在は吉村家と袂を分かち、独自の発展を遂げている。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-6 bg-gray-50 p-4 rounded">
+                <h3 class="text-lg font-bold mb-2">四天王の特徴</h3>
+                <p>四天王はいずれも吉村家で厳しい修行を積み、認められた証として直系店を名乗ることができました。店内には「お客様は我が味の師なり」という暖簾が掲げられているのが特徴です。</p>
+                <p class="mt-2">現在でも吉村家のDNAを受け継ぎ、黒い器に醤油先行型のスープ、スモークチャーシュー、純白の戦闘服を着た職人など、直系ならではの特徴を守り続けています。</p>
+            </div>
+        </section>
+
+        <!-- 系譜別の特徴比較 -->
+        <section class="section">
+            <h2 class="text-2xl">四大系譜の特徴比較</h2>
+            <div class="overflow-x-auto mt-4">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>比較項目</th>
+                            <th class="bg-red-100">直系</th>
+                            <th class="bg-yellow-100">クラシック系</th>
+                            <th class="bg-green-100">壱系</th>
+                            <th class="bg-blue-100">新中野武蔵家系</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>源流</td>
+                            <td>吉村家直系</td>
+                            <td>六角家・本牧家系</td>
+                            <td>壱六家系</td>
+                            <td>武蔵家（たかさご家の影響）</td>
+                        </tr>
+                        <tr>
+                            <td>器の色</td>
+                            <td>漆黒の器</td>
+                            <td>青磁の器</td>
+                            <td>白または黒の器</td>
+                            <td>青磁の器</td>
+                        </tr>
+                        <tr>
+                            <td>スープの色</td>
+                            <td>濃い褐色（醤油先行）</td>
+                            <td>黄金色（バランス型）</td>
+                            <td>白濁（クリーミー）</td>
+                            <td>茶色（豚骨強め）</td>
+                        </tr>
+                        <tr>
+                            <td>特徴的なトッピング</td>
+                            <td>スモークチャーシュー</td>
+                            <td>黄身染み渡る味玉</td>
+                            <td>うずらの卵</td>
+                            <td>チーズなど独自トッピング</td>
+                        </tr>
+                        <tr>
+                            <td>麺の特徴</td>
+                            <td>酒井製麺の太麺</td>
+                            <td>酒井製麺の太麺</td>
+                            <td>ややストレートな太麺</td>
+                            <td>固めの太麺（バリカタ可）</td>
+                        </tr>
+                        <tr>
+                            <td>ニンニク</td>
+                            <td>行者ニンニク・チップ</td>
+                            <td>おろしニンニク</td>
+                            <td>おろしニンニク</td>
+                            <td>おろしニンニク</td>
+                        </tr>
+                        <tr>
+                            <td>ライスの特徴</td>
+                            <td>有料</td>
+                            <td>有料</td>
+                            <td>無料（多くの店舗）</td>
+                            <td>固めで食べ放題</td>
+                        </tr>
+                        <tr>
+                            <td>看板の色</td>
+                            <td>赤地に黒文字</td>
+                            <td>系列ごとに異なる色使い</td>
+                            <td>赤地に白太字</td>
+                            <td>赤地に白文字「武」</td>
+                        </tr>
+                        <tr>
+                            <td>店舗展開</td>
+                            <td>限定的</td>
+                            <td>中規模</td>
+                            <td>全国的</td>
+                            <td>東京中心</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">※各系譜の特徴は一般的な傾向であり、店舗によって例外もあります。</p>
+        </section>
+
+        <!-- 家系ラーメンのRAWデータ -->
+        <section class="section">
+            <h2 class="text-2xl">横浜家系ラーメン RAWデータ</h2>
+            <p class="mb-4">以下に、主要な家系ラーメン店舗の詳細なデータをまとめています。</p>
+            
+            <div class="scroll-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>店舗名</th>
+                            <th>系譜</th>
+                            <th>創業年</th>
+                            <th>創業者</th>
+                            <th>所在地</th>
+                            <th>特徴・備考</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 直系 -->
+                        <tr>
+                            <td>吉村家</td>
+                            <td><span class="system-type type-direct">直系</span></td>
+                            <td>1974年</td>
+                            <td>吉村実</td>
+                            <td>横浜市西区</td>
+                            <td>家系ラーメン総本山。2023年3月に移転。</td>
+                        </tr>
+                        <tr>
+                            <td>杉田家</td>
+                            <td><span class="system-type type-direct">直系</span></td>
+                            <td>1992年頃</td>
+                            <td>津村氏</td>
+                            <td>横浜市磯子区</td>
+                            <td>吉村家直系1号店。四天王の一つ。</td>
+                        </tr>
+                        <tr>
+                            <td>はじめ家</td>
+                            <td><span class="system-type type-direct">直系</span></td>
+                            <td>2001年</td>
+                            <td>小沢肇</td>
+                            <td>富山県魚津市</td>
+                            <td>北陸初の家系ラーメン。四天王の一つ。</td>
+                        </tr>
+                        <tr>
+                            <td>環2家</td>
+                            <td><span class="system-type type-direct">直系</span></td>
+                            <td>1990年代</td>
+                            <td>鶴巻氏</td>
+                            <td>横浜市港南区</td>
+                            <td>一度独立後、直系復帰。四天王の一つ。</td>
+                        </tr>
+                        <tr>
+                            <td>王道家</td>
+                            <td><span class="system-type type-direct">直系</span></td>
+                            <td>1990年代</td>
+                            <td>清水裕正</td>
+                            <td>千葉県</td>
+                            <td>元四天王。現在は吉村家と袂を分かつ。</td>
+                        </tr>
+                        <tr>
+                            <td>末廣家</td>
+                            <td><span class="system-type type-direct">直系</span></td>
+                            <td>1990年代</td>
+                            <td>-</td>
+                            <td>横浜市神奈川区</td>
+                            <td>直系店の一つ。六角橋に位置する。</td>
+                        </tr>
+                        <tr>
+                            <td>厚木家</td>
+                            <td><span class="system-type type-direct">直系</span></td>
+                            <td>-</td>
+                            <td>吉村政紀</td>
+                            <td>神奈川県厚木市</td>
+                            <td>吉村実の次男が経営する直系店。</td>
+                        </tr>
+                        
+                        <!-- クラシック系 -->
+                        <tr>
+                            <td>本牧家</td>
+                            <td><span class="system-type type-classic">クラシック系</span></td>
+                            <td>1980年代</td>
+                            <td>-</td>
+                            <td>横浜市港南区</td>
+                            <td>御三家の一つ。2023年5月に本店閉店。</td>
+                        </tr>
+                        <tr>
+                            <td>六角家</td>
+                            <td><span class="system-type type-classic">クラシック系</span></td>
+                            <td>1986年</td>
+                            <td>神藤隆</td>
+                            <td>横浜市神奈川区</td>
+                            <td>御三家の一つ。2017年に本店閉店。</td>
+                        </tr>
+                        <tr>
+                            <td>寿々喜家</td>
+                            <td><span class="system-type type-classic">クラシック系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>横浜市保土ケ谷区</td>
+                            <td>本牧家系譜の有名店。紅白の看板が特徴。</td>
+                        </tr>
+                        <tr>
+                            <td>川崎家</td>
+                            <td><span class="system-type type-classic">クラシック系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>神奈川県川崎市</td>
+                            <td>本牧家系譜の店舗。</td>
+                        </tr>
+                        <tr>
+                            <td>九ツ家</td>
+                            <td><span class="system-type type-classic">クラシック系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>横浜市神奈川区</td>
+                            <td>六角家系譜の店舗。六角橋に位置する。</td>
+                        </tr>
+                        <tr>
+                            <td>すずき家</td>
+                            <td><span class="system-type type-classic">クラシック系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>横浜市神奈川区</td>
+                            <td>六角家系譜の店舗。</td>
+                        </tr>
+                        <tr>
+                            <td>たかさご家</td>
+                            <td><span class="system-type type-classic">クラシック系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>横浜市中区</td>
+                            <td>六角家系譜。緑の看板が特徴。武蔵家に影響。</td>
+                        </tr>
+                        
+                        <!-- 壱系 -->
+                        <tr>
+                            <td>壱六家</td>
+                            <td><span class="system-type type-ichiroku">壱系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>横浜市磯子区</td>
+                            <td>壱系の源流。資本系家系ラーメンの代表格。</td>
+                        </tr>
+                        <tr>
+                            <td>魂心家</td>
+                            <td><span class="system-type type-ichiroku">壱系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>全国展開</td>
+                            <td>壱六家系列の大手チェーン店。</td>
+                        </tr>
+                        <tr>
+                            <td>町田商店</td>
+                            <td><span class="system-type type-ichiroku">壱系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>全国展開</td>
+                            <td>町田発祥の家系チェーン。「商店系」の代表。</td>
+                        </tr>
+                        <tr>
+                            <td>壱角家</td>
+                            <td><span class="system-type type-ichiroku">壱系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>全国展開</td>
+                            <td>町田商店系列のチェーン店。</td>
+                        </tr>
+                        
+                        <!-- 武蔵家系 -->
+                        <tr>
+                            <td>武蔵家</td>
+                            <td><span class="system-type type-musashi">武蔵家系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>東京都中野区</td>
+                            <td>新中野に本店。東京での家系ブームを牽引。</td>
+                        </tr>
+                        <tr>
+                            <td>渡来武</td>
+                            <td><span class="system-type type-musashi">武蔵家系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>東京都</td>
+                            <td>武蔵家系譜の店舗。チーズトッピングが人気。</td>
+                        </tr>
+                        <tr>
+                            <td>麺家たいせい</td>
+                            <td><span class="system-type type-musashi">武蔵家系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>東京都</td>
+                            <td>武蔵家系譜。「鶏と醤油で食わす家系」を掲げる。</td>
+                        </tr>
+                        <tr>
+                            <td>北里家</td>
+                            <td><span class="system-type type-musashi">武蔵家系</span></td>
+                            <td>-</td>
+                            <td>-</td>
+                            <td>横浜市</td>
+                            <td>武蔵家系譜の店舗。上大岡に位置。</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="text-sm text-gray-600 mt-2">※データは2025年4月時点の情報です。店舗の閉店や移転などにより情報が変更されている場合があります。</p>
+        </section>
+
+        <!-- 家系ラーメンの特徴と楽しみ方 -->
+        <section class="section">
+            <h2 class="text-2xl">家系ラーメンの楽しみ方</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                <div class="bg-gray-50 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">カスタマイズシステム</h3>
+                    <p>家系ラーメンの大きな特徴は、好みに合わせてカスタマイズできることです。一般的に以下の3つを指定できます：</p>
+                    <ul class="list-disc pl-6 mt-2">
+                        <li><strong>濃さ</strong>：スープの濃度（濃いめ・普通・薄め）</li>
+                        <li><strong>油</strong>：鶏油の量（多め・普通・少なめ）</li>
+                        <li><strong>硬さ</strong>：麺の茹で加減（硬め・普通・柔らかめ）</li>
+                    </ul>
+                    <p class="mt-2">初めて訪れる場合は「普通」で注文し、好みに合わせて次回調整するのがおすすめです。</p>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">トッピングの楽しみ方</h3>
+                    <p>家系ラーメンでは、様々なトッピングを追加できます：</p>
+                    <ul class="list-disc pl-6 mt-2">
+                        <li><strong>味玉</strong>：系譜によって風味や染み具合が異なる</li>
+                        <li><strong>海苔増し</strong>：海苔をより楽しみたい場合</li>
+                        <li><strong>ねぎ</strong>：爽やかさを加える</li>
+                        <li><strong>チャーシュー増し</strong>：より肉の旨味を楽しむ</li>
+                        <li><strong>独自トッピング</strong>：チーズ、うずらの卵など店舗独自のもの</li>
+                    </ul>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">にんにくの使い方</h3>
+                    <p>家系ラーメンには、テーブルにニンニクのチップや生ニンニクが置かれていることが多いです。</p>
+                    <ol class="list-decimal pl-6 mt-2">
+                        <li>最初にスープを少し味わう</li>
+                        <li>好みの量のニンニクを加える</li>
+                        <li>風味が変化するのを楽しむ</li>
+                    </ol>
+                    <p class="mt-2">系譜によって、「行者にんにく」や「ニンニクチップ」など異なる種類のにんにくが提供されることもあります。</p>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded">
+                    <h3 class="text-xl font-bold mb-2">ライスとの組み合わせ</h3>
+                    <p>家系ラーメンの濃厚なスープはライスとの相性が抜群です。楽しみ方は多様です：</p>
+                    <ul class="list-disc pl-6 mt-2">
+                        <li><strong>スープをかける</strong>：スープをライスにかけて食べる</li>
+                        <li><strong>海苔巻きライス</strong>：ライスを海苔で巻いてスープに浸す</li>
+                        <li><strong>味玉と一緒に</strong>：味玉の黄身をライスに絡める</li>
+                    </ul>
+                    <p class="mt-2">特に武蔵家系では固めのライスが無料で食べ放題のお店が多く、ラーメンを食べた後もライスを楽しめます。</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- まとめ -->
+        <section class="section">
+            <h2 class="text-2xl">まとめ</h2>
+            <div class="mt-4">
+                <p>横浜家系ラーメンは、1974年に吉村実氏が「吉村家」を開店したことから始まり、現在では全国的に普及した人気のラーメンジャンルとなりました。豚骨醤油のスープと太めの麺、ホウレン草・チャーシュー・海苔というトッピングの組み合わせが特徴です。</p>
+                
+                <p class="mt-3">家系ラーメンは時代とともに進化し、現在では大きく4つの系譜に分類されます：</p>
+                
+                <div class="mt-3">
+                    <div class="summary-point">
+                        <div class="summary-icon"><i class="fas fa-utensils text-red-800"></i></div>
+                        <div><strong>直系</strong>：吉村家から直接派生した店舗群。漆黒の器に醤油先行型スープが特徴。</div>
+                    </div>
+                    <div class="summary-point">
+                        <div class="summary-icon"><i class="fas fa-utensils text-yellow-800"></i></div>
+                        <div><strong>クラシック系</strong>：六角家や本牧家を中心とした伝統的な味わい。バランスの取れたスープが特徴。</div>
+                    </div>
+                    <div class="summary-point">
+                        <div class="summary-icon"><i class="fas fa-utensils text-green-800"></i></div>
+                        <div><strong>壱系</strong>：壱六家を源流とする全国展開の資本系チェーン。白濁スープとうずらの卵が特徴。</div>
+                    </div>
+                    <div class="summary-point">
+                        <div class="summary-icon"><i class="fas fa-utensils text-blue-800"></i></div>
+                        <div><strong>新中野武蔵家系</strong>：東京発の家系ラーメン。豚骨の旨味が強く、ライス食べ放題が特徴。</div>
+                    </div>
+                </div>
+                
+                <p class="mt-3">これらの系譜はそれぞれ独自の発展を遂げながらも、家系ラーメンという大きな枠組みの中で共存し、日本のラーメン文化を豊かにしています。</p>
+                
+                <p class="mt-3">家系ラーメンは単なる食べ物を超え、職人の技術や伝統、そして情熱が詰まった日本の食文化の一端を担っています。各店舗の独自性を尊重しながらも、「家系」というアイデンティティを守り続けることで、今後も進化を続けていくでしょう。</p>
+            </div>
+        </section>
+    </div>
+
+    <div class="footer">
+        <div class="container mx-auto px-4">
+            <p>© 2025 横浜家系ラーメンの系譜 完全ガイド</p>
+            <p class="mt-1">※本ガイドは公開情報を基に作成されています。店舗情報は変更されている可能性がありますので、訪問前に各店舗の最新情報をご確認ください。</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+export default {
+  container: 'container',
+  heroSection: 'heroSection',
+  title: 'title',
+  description: 'description',
+  buttonGroup: 'buttonGroup',
+  treeSection: 'treeSection',
+  sectionTitle: 'sectionTitle',
+  treeContainer: 'treeContainer',
+  featuredSection: 'featuredSection',
+  featuredContent: 'featuredContent',
+  featuredTitle: 'featuredTitle',
+  featuredDescription: 'featuredDescription',
+  resourcesSection: 'resourcesSection',
+  cardContainer: 'cardContainer',
+};
